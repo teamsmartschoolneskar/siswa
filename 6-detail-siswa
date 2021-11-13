@@ -14,11 +14,11 @@
     
     <h1>Detail Data Siswa</h1>
     <br><br>
-    <a href="data-siswa.php">Kembali</a>
+    <a href="../siswa/data-siswa.php">Kembali</a>
     <br><br>
     <h3>Data Siswa</h3>
         <?php
-            include 'koneksi.php';
+            include '../config/koneksi.php';
             $id = $_GET['id'];
             $data = mysqli_query($conn, "SELECT * FROM data_siswa WHERE id='$id'");
             while($ds = mysqli_fetch_array($data)) {
@@ -165,7 +165,7 @@
                 <td><?php echo $ds['agama_ibu']; ?></td>
             </tr>
             <tr>
-                <td>NIK Ayah</td>
+                <td>NIK Ibu</td>
                 <td><?php echo $ds['nik_ibu']; ?></td>
             </tr>
             <tr>
@@ -183,6 +183,20 @@
             <tr>
                 <td>Gaji Ibu</td>
                 <td><?php echo $ds['gaji_ibu']; ?></td>
+            </tr>
+        </table>
+    </div>
+
+    <h5>Dokumen Pendukung</h5>
+    <div class="table_c">
+        <table>
+            <tr>
+                <td>Akta Kelahiran</td>
+                <td><img src="files/<?php echo $ds['akta_upload']; ?>" alt=""></td>
+            </tr>
+            <tr>
+                <td>Kartu Keluarga</td>
+                <td><img src="files/<?php echo $ds['kk_upload']; ?>" alt=""></td>
             </tr>
         </table>
     </div>
