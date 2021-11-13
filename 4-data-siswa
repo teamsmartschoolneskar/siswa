@@ -25,10 +25,10 @@
                     <img src="#" alt="" srcset="">
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="account.html">Account</a>
-                    <a class="dropdown-item" href="data.html">Data</a>
+                    <a class="dropdown-item" href="profile-siswa.php">Account</a>
+                    <a class="dropdown-item" href="data-siswa.php">Data</a>
                     <a><hr class="dropdown-divider"></a>
-                    <a class="dropdown-item" href="#">Logout</a>
+                    <a class="dropdown-item" href="logout.php">Logout</a>
                   </div>
                 </li>
               </ul>
@@ -38,6 +38,7 @@
 
     <div class="container">
       <h1 class="pt-5 mt-3 mb-3">Informasi Data</h1>
+      <a href="upload-siswa.php">Upload Dokumen</a>
         <div class="table_index">
           <table class="table table-striped table-bordered">
             <thead>
@@ -51,7 +52,7 @@
 
             <?php
               session_start();
-              include 'koneksi.php';
+              include '../config/koneksi.php';
     
               $username = $_SESSION['username'];
     
@@ -71,15 +72,15 @@
                   <td><?php echo $ds['nis']; ?></td>
                   <td><?php echo $ds['kelas']; ?></td>
                   <td>
-                      <a href="update-admin.php?id=<?php echo $ds['id']; ?>">Ubah</a> ||
-                      <a href="detail-admin.php?id=<?php echo $ds['id']; ?>" class="btn btn-primary">Detail</a>
+                      <a href="../siswa/update-siswa.php?id=<?php echo $ds['id']; ?>" class="btn btn-primary">Ubah</a> ||
+                      <a href="../siswa/detail-siswa.php?id=<?php echo $ds['id']; ?>" class="btn btn-primary">Detail</a>
                   </td>
                </tr>
               </tbody>
 
               <?php
                 }
-              >
+              ?>
 
           </table>
         </div>
