@@ -8,62 +8,53 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
-    <title>Informasi Data</title>
+    <title>Account</title>
   </head>
   <body>
+    <h1>Profile</h1>
 
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
-      <div class="container">
-        <a class="navbar-brand" href="home.html">Sistem Kesiswaan SMK Negeri 1 Karawang</a>
-          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-              <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-expanded="false">
-                    Profil
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Account</a>
-                    <a class="dropdown-item" href="#">Data</a>
-                    <a><hr class="dropdown-divider"></a>
-                    <a class="dropdown-item" href="#">Logout</a>
-                  </div>
-                </li>
-              </ul>
-            </div>
-      </div>
-    </nav>
+    <div class="table_index">
+          <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">Nama</th>
+                <th scope="col">NIS</th>
+                <th scope="col">Username</th>
+                <th scope="col">Password</th>
+              </tr>
+            </thead>
 
-    <div class="container">
-      <h1 class="pt-5 mt-3 mb-3">Profile</h1>
-        <div class="jumbotron jumbotron-fluid">
-          <div class="container">
-            <h1 class="display-4">$Username</h1>
-            <p class="lead">$NIS</p>
-          </div>
-        </div>
+            <?php
+              session_start();
+              include '../config/koneksi.php';
+    
+              $username = $_SESSION['username'];
+    
+              $ambil_id = mysqli_query($conn, "SELECT * FROM admin WHERE username='$username'");
+    
+              $userid = mysqli_fetch_assoc($ambil_id);
+    
+              $getUserId =  $userid['id_user'];
+    
+              $data = mysqli_query($conn, "SELECT * FROM admin WHERE id_user='$getUserId'");
+              while ($ds = mysqli_fetch_array($data)) {
+            ?>
 
-        <div class="container">
-          <ul>
-            <li>
-              Nama :
-            </li>
-            <li>
-              Kelas :
-            </li>
-            <li>
-              NISN :
-            </li>
-          </ul>
-        </div>
+              <tbody>
+                <tr>
+                  <td><?php echo $ds['nama']; ?></td>
+                  <td><?php echo $ds['nis']; ?></td>
+                  <td><?php echo $ds['username']; ?></td>
+                  <td><?php echo $ds['password']; ?></td>
+               </tr>
+              </tbody>
 
-        <div class="card-footer text-muted text-center fixed-bottom">
-          About Us
-        </div>
+              <?php
+                }
+              ?>
 
-    </div>
+          </table>
+
 
     <!-- Optional JavaScript; choose one of the two! -->
 
