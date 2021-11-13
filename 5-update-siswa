@@ -13,10 +13,10 @@
 <body>
 
     <h1>Ubah Informasi Data</h1>
-    <br><a href="data-siswa">Kembali</a><br><br>
+    <br><a href="data-siswa.php">Kembali</a><br><br>
 
     <?php
-        include 'koneksi.php';
+        include '../config/koneksi.php';
         $id = $_GET['id'];
         $data = mysqli_query($conn, "SELECT * FROM data_siswa WHERE id='$id'");
         while ($ds = mysqli_fetch_array($data)) {
